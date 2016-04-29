@@ -1,5 +1,6 @@
 import random
 
+
 question1 = ['Scholars or intelectuals are commonly said to reside in what kind of tower?', # question1 will be used for question 1 ($100) only
 'According to the proverb about hope, "Theres always a light at the end of" what?',
 "In what children's game are participants chased by someone designated 'it'?",
@@ -63,7 +64,7 @@ multi2A = ['A: Taking a lunch break','A: Wyoming','A: NCAA','A: Polka dots','A: 
 
 multi2B = ['B: Damaging the set','B: Tennessee','B: NFL','B: Stripes','B: Hands','B: Aleph','B: Earthquakes','B: Cleanup','B: Read it','B: Lost Angels','B: Grease mitts','B: Gladiators','B: The toaster','B: Rewrap','B: Apple','B: Blade','B: Flower petals','B: Its craftsman','B: Goodness gracious!','B: Saturday','B: 828','B: In search of','B: West ','B: Out on the field','B: Stockings','B: Nickel','B: President','B: Scorpio','B: Pharmacology','B: Rupee']
 
-multi2C = ['C: Overacting','C: Ohio','C: NRA','C: Stars','C: Feet','C: Aye','C: Weather changes','C: Hopefull','C: Eat it','C: Los Angeles residents','C: Butterfingers','C: Monks','C: Baseball','C: Reprocess','C: Carrot','C: Staff','C: Grass','C: Its weakest link','C: Run!','C: Sunday','C: 877','C: I seek one','C: North','C: In a slump',"C: Men's girdle",'C: Dime','C: Department of Commerce','C: Pisces','C: Philosophy','C: Dutche mark']
+multi2C = ['C: Overacting','C: Ohio','C: NRA','C: Stars','C: Feet','C: Aye','C: Weather changes','C: Hopefull','C: Eat it','C: The Angels','C: Butter fingers','C: Monks','C: Baseball','C: Reprocess','C: Carrot','C: Staff','C: Grass','C: Its weakest link','C: Run!','C: Sunday','C: 877','C: I seek one','C: North','C: In a slump',"C: Men's girdle",'C: Dime','C: Department of Commerce','C: Pisces','C: Philosophy','C: Dutche mark']
 
 multi2D = ['D: Memorizing his lines','D: Washington','D: NAACP','D: Crosses','D: Bats','D: Allah','D: Meteors','D: Babe','D: Wear it','D: Dudes','D: Teflon palms','D: Pirates','D: Sliced bread','D: Redo','D: Bugs','D: Twig','D: Eyebrows','D: Its metal','D: Who cares!','D: Monday','D: 888','D: It seems odd','D: South','D: In the hole','D: Necktie','D: Quarter','D: Senate','D: Taurus','D: Psychology','D: Ruble']
 
@@ -180,84 +181,63 @@ correctAnswer5 = ['b','a','d','a','a','d','b','b','c','a']
                   
 valueWon = ['$0','$100','$200','$300','$500','$1,000','$2,000','$4,000','$8,000','$16,000','$32,000','$64,000','$125,000','$250,000','$500,000','$1,000,000']
 
-print ('Welcome to "Who Wants to Be A Millionaire!" The game show where you answer a series of questions and climb your way to the million!') #prints out rules
-print ('')
-print ('Rules: If you get 15 questions right in a row, you will win $1,000,000!')
-print ('No using the internet to look up answers please')
-print ('Rules: If you want to take your money and not risk losing it, you may do so by typing "leave".')
-print ('Rules: If you get a question wrong, you will drop down ant take home your last milestone ($0, $1,000, $32,000).')
+score = 0
 
-print ('')
+def firstquestion ():
+    global score
+    while (score < 1): #question 1
+        print("Here's your " + valueWon[score + 1] + " question:")
+        x = random.randint(0,14) 
+        player = input(question1[x] + '\n' + multi1A[x] + '\n' + multi1B[x] + '\n' + multi1C[x] + '\n' + multi1D[x] + '\n') 
+        player = player.lower()
 
-print ('Prize Ladder:')
-print ('15- $1,000,000')
-print ('14- $500,000')
-print ('13- $250,000')
-print ('12- $100,000')
-print ('11- $64,000')
-print ('10- $32,000*')
-print ('9- $16,000')
-print ('8- $8,000')
-print ('7- $4,000')
-print ('6- $2,000')
-print ('5- $1,000*')
-print ('4- $500')
-print ('3- $300')
-print ('2- $200')
-print ('1- $100')
-print ('')
-print ('Are you ready?')
-ready1 = input ()
-print ('')
-print ('Then lets play Millionaire!')
-print ('')
+        if player == correctAnswer1[x]: 
+            score = score + 1 
+            print ("Correct! You won " + valueWon[score])
+            print ('')
+            if score == 1:
+                secondquestion ()
+            else:
+                continue
 
+        elif player == 'leave':
+            print ("Congratulations! You'll take home " + valueWon[score] +'!')
+            break
 
-score = 0 #keeps t rack of how many questions you've gotten right
+        elif player != correctAnswer1[x]:
+            print ("I'm sorry, that was incorrect. You go home with " + valueWon[0])
+            break
 
+  
+def secondquestion ():
+    global score
+    while (score >= 1 and score < 5): #question #2-5
+        print("Here's your " + valueWon[score + 1] + " question:")
+        x = random.randint(0,29) 
+        player = input(question2[x] + '\n' + multi2A[x] + '\n' + multi2B[x] + '\n' + multi2C[x] + '\n' + multi2D[x] + '\n')  
+        player = player.lower()
 
-while (score == 0): #question #1
-    print("Here's your " + valueWon[score + 1] + " question:")
-    x = random.randint(0,14) #This picks a random number to pick a random question from the list question2
-    player = input(question1[x] + '\n' + multi1A[x] + '\n' + multi1B[x] + '\n' + multi1C[x] + '\n' + multi1D[x] + '\n') # the number that x is determines what question/answers is picked.
-    player = player.lower()
+        if player == correctAnswer2[x]:
+            score = score + 1
+            print ("Correct! You won " + valueWon[score])
+            print ('')
+            if score == 5:
+                 areyoureadyone ()
+            else:
+                continue
 
-
-    if player == correctAnswer1[x]: #if the player picked the correct answer between a-d, he will advance to the next one
-         score = score + 1 #adds 1 to the score to keep track
-         print ("Correct! You won " + valueWon[score]) #shows how much the player has won from the valueWon list
-         print ('')
-
-    elif player == 'leave': #if the player types leave, the game will end and he will get the amount of money he has already won.
-         print ("Congratulations! You'll take home " + valueWon[score] +'!')
-         break
-
-    elif player != correctAnswer1[x]: #if the player gets the question incorrect, they will walk away with the last milestone (in this case it's $0)
-         print ("I'm sorry, that was incorrect. You go home with " + valueWon[0])
-         break
-
-#later ones are similar to the first one, but the just pick from different question cattegories.
-while (score >= 1 and score < 5): #question #2-5
-    print("Here's your " + valueWon[score + 1] + " question:")
-    x = random.randint(0,29) 
-    player = input(question2[x] + '\n' + multi2A[x] + '\n' + multi2B[x] + '\n' + multi2C[x] + '\n' + multi2D[x] + '\n')  
-    player = player.lower()
+        elif player == 'leave':
+            print ("Congratulations! You'll take home " + valueWon[score] +'!')
+            break
+        elif player != correctAnswer2[x]:
+            print ("I'm sorry, that was incorrect. You go home with " + valueWon[0])
+            break
 
 
-    if player == correctAnswer2[x]:
-        score = score + 1
-        print ("Correct! You won " + valueWon[score])
-        print ('')
 
-    elif player == 'leave':
-        print ("Congratulations! You'll take home " + valueWon[score] +'!')
-        break
-    elif player != correctAnswer2[x]:
-        print ("I'm sorry, that was incorrect. You go home with " + valueWon[0])
-        break
 
 #this part basically shows the player's progress and ask them if they are ready to continue
-if score == 5:
+def areyoureadyone ():
     print ('')
     print ('Prize Ladder')
     print ('15- $1,000,000')
@@ -273,7 +253,7 @@ if score == 5:
     print ('')
     print ('')
     print ('You have reached a milestone! you cannot walk out with less than $1,000!')
-    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at anytime.')
+    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at any question.')
     print ('The questions are going to get a little harder, are you ready? (yes or no)?')
     ready = input()
     ready = ready.lower()
@@ -288,32 +268,37 @@ if score == 5:
         print ('')
 
     print ('')
+    thirdquestion ()
 
 
+def thirdquestion ():
+    global score
+    while (score >= 5 and score < 10): #question #6-10
+        print("Here's your " + valueWon[score + 1] + " question:")
+        x = random.randint(0,29)
+        player = input(question3[x] + '\n' + multi3A[x] + '\n' + multi3B[x] + '\n' + multi3C[x] + '\n' + multi3D[x] + '\n')
+        player = player.lower()
 
-while (score >= 5 and score < 10): #question #6-10
-    print("Here's your " + valueWon[score + 1] + " question:")
-    x = random.randint(0,29)
-    player = input(question3[x] + '\n' + multi3A[x] + '\n' + multi3B[x] + '\n' + multi3C[x] + '\n' + multi3D[x] + '\n')
-    player = player.lower()
+        if player == correctAnswer3[x]:
+            score = score + 1
+            print ("Correct! You won " + valueWon[score])
+            print ('')
+            if score == 10:
+                areyoureadytwo ()
+            else:
+                continue
+
+        elif player == 'leave':
+            print ("Congratulations! You'll take home " + valueWon[score] +'!')
+            break
+            
+        elif player != correctAnswer3[x]:
+            print ("I'm sorry, that was incorrect. You go home with " + valueWon[5])
+            break
 
 
-
-    if player == correctAnswer3[x]:
-         score = score + 1
-         print ("Correct! You won " + valueWon[score])
-         print ('')
-
-    elif player == 'leave':
-         print ("Congratulations! You'll take home " + valueWon[score] +'!')
-         break
-        
-    elif player != correctAnswer3[x]:
-         print ("I'm sorry, that was incorrect. You go home with " + valueWon[5])
-         break
-
+def areyoureadytwo ():
 #another part where it shows the player's progress and ask them if they are ready to continue
-if score == 10:
     print ('')
     print ('Prize Ladder')
     print ('15- $1,000,000')
@@ -324,7 +309,7 @@ if score == 10:
     print ('')
     print ('')
     print ('You have reached another milestone! you cannot walk out with less than $32,000!')
-    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at anytime.')
+    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at any question.')
     print ('Questions are going to get very dificult, are you sure your ready?')
     print ('')
     print ('')
@@ -341,31 +326,37 @@ if score == 10:
         print ('')
 
     print ('')
+    fourthquestion ()
+
+def fourthquestion ():
+    global score
+    while (score >= 10 and score < 14): #question #11-14
+        print("Here's your " + valueWon[score + 1] + " question:")
+        x = random.randint(0,29)
+        player = input(question4[x] + '\n' + multi4A[x] + '\n' + multi4B[x] + '\n' + multi4C[x] + '\n' + multi4D[x] + '\n')
+        player = player.lower()
 
 
+        if player == correctAnswer4[x]:
+            score = score + 1
+            print ("Correct! You won " + valueWon[score])
+            print ('')
+            if score == 14:
+                areyoureadythree ()
+            else:
+                continue
 
-while (score >= 10 and score < 14): #question #11-14
-    print("Here's your " + valueWon[score + 1] + " question:")
-    x = random.randint(0,29)
-    player = input(question4[x] + '\n' + multi4A[x] + '\n' + multi4B[x] + '\n' + multi4C[x] + '\n' + multi4D[x] + '\n')
-    player = player.lower()
+        elif player == 'leave':
+            print ("Congratulations! You'll take home " + valueWon[score] +'!')
+            break
+
+        elif player != correctAnswer4[x]:
+            print ("I'm sorry, that was incorrect. You go home with " + valueWon[10])
+            break
 
 
-    if player == correctAnswer4[x]:
-        score = score + 1
-        print ("Correct! You won " + valueWon[score])
-        print ('')
-
-    elif player == 'leave':
-        print ("Congratulations! You'll take home " + valueWon[score] +'!')
-        break
-
-    elif player != correctAnswer4[x]:
-        print ("I'm sorry, that was incorrect. You go home with " + valueWon[10])
-        break
-
+def areyoureadythree ():
 #the last part where it shows the player's progress and ask them if they are ready to continue
-if score == 14:
     print ('')
     print ('Prize Ladder')
     print ('15- $1,000,000')
@@ -373,7 +364,7 @@ if score == 14:
     print ('')
     print ('You have Won $500,000!!! Your just 1 question away from $1,000,000!!!')
     print ("We've never had anyone reach this high in the money ladder. This is a historic moment!")
-    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at anytime.')
+    print ('Remember, if you want to keep your winnings instead of risking it, type "leave" at any question.')
     print ('Are you ready to see your $1 Million question? (yes or no)')
     print ('')
     print ('')
@@ -386,43 +377,80 @@ if score == 14:
 
     else:
         print ('')
-        print ('Well I hope your ready, so lets play your $1 Million question!')
-        print ('')
+    print ('Well I hope your ready, so lets play your $1 Million question!')
+    print ('')
+
+    print ('')
+    fifthquestion ()
+
+def fifthquestion ():
+    global score
+    while (score == 14): #question #15
+        print("Here's your " + valueWon[score + 1] + " question:")
+        x = random.randint(0,9)
+        player = input(question5[x] + '\n' + multi5A[x] + '\n' + multi5B[x] + '\n' + multi5C[x] + '\n' + multi5D[x] + '\n')
+        player = player.lower()
+
+
+        if player == correctAnswer5[x]:
+            print ("Correct! You won $1,000,000!")
+            print('')
+            print ("Congratulations! You're a Millionaire!!!")
+            print ('How happy are you right now?')
+            happiness = input ()
+            print ('')
+            print ("Well I'm happy to hear it! Did you expect that you were going to win the million today?")
+            happiness2 = input ()
+            print ('')
+            print("Well ejoy your Million dollars! Tune in next week to see if another contestant can take home the Million!")
+            break
+        
+        elif player == 'leave':
+            print ("Congratulations! You'll take home " + valueWon[score] +'!')
+            print ('')
+            print ("Well it's not a Million, but its still a lot of money, why did  you decide to back out?")
+            doit = input ()
+            print ('')
+            print ('Well I wish you luck on your future endeavors!')
+            print ("We were so close to having a Millionaire. Tune in next week to see if a contestant can take home the Million!")
+            break
+
+        elif player != correctAnswer5[x]:
+            print ("I'm sorry, that was incorrect. You'll drop all the way down and go home with " + valueWon[10])
+            break
+
+def playgame ():
+
+    print ('Welcome to "Who Wants to Be A Millionaire!" The game show where you answer a series of questions and climb your way to the million!') #prints out rules
+    print ('')
+    print ('Rules: If you get 15 questions right in a row, you will win $1,000,000!')
+    print ('No using the internet to look up answers please')
+    print ('Rules: If you want to take your money and not risk losing it, you may do so by typing "leave".')
+    print ('Rules: If you get a question wrong, you will drop down ant take home your last milestone ($0, $1,000, $32,000).')
 
     print ('')
 
+    print ('Prize Ladder:')
+    print ('15- $1,000,000')
+    print ('14- $500,000')
+    print ('13- $250,000')
+    print ('12- $100,000')
+    print ('11- $64,000')
+    print ('10- $32,000*')
+    print ('9- $16,000')
+    print ('8- $8,000')
+    print ('7- $4,000')
+    print ('6- $2,000')
+    print ('5- $1,000*')
+    print ('4- $500')
+    print ('3- $300')
+    print ('2- $200')
+    print ('1- $100')
+    print ('')
+    print ('Are you ready to play?')
+    ready1 = input ()
+    print ('')
+    print ('Then lets play Millionaire!')
+    print ('')
+    firstquestion ()
 
-
-
-while (score == 14): #question #15
-    print("Here's your " + valueWon[score + 1] + " question:")
-    x = random.randint(0,9)
-    player = input(question5[x] + '\n' + multi5A[x] + '\n' + multi5B[x] + '\n' + multi5C[x] + '\n' + multi5D[x] + '\n')
-    player = player.lower()
-
-    if player == correctAnswer5[x]:
-        print ("Correct! You won $1,000,000!")
-        print('')
-        print ("Congratulations! You're a Millionaire!!!")
-        print ('how happy are you right now?')
-        happiness = input ()
-        print ('')
-        print ("Well I'm happy to hear it! Did you expect that you were going to win the million today?")
-        happiness2 = input ()
-        print ('')
-        print("Well ejoy your Million dollars! Tune in next week to see if another contestant can take home the Million!")
-        break
-
-    elif player == 'leave':
-        print ("Congratulations! You'll take home " + valueWon[score] +'!')
-        print ('')
-        print ("Well it's not a Million, but its still a lot of money, wwhy did  you decide to back out")
-        doit = input ()
-        print ('')
-        print ('Well I wish you luck on your future endeavors!')
-        print ("We were so close to having a Millionaire. Tune in next week to see if a contestant can take home the Million!")
-        break
-
-    elif player != correctAnswer5[x]:
-        print ("I'm sorry, that was incorrect. You'll drop all the way down and go home with " + valueWon[10])
-        break

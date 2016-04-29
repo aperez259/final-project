@@ -1,3 +1,8 @@
 # Instructions for Running my Project
 
-Replace this text with the instructions your classmates will need to run your project. If your code needs any libraries using `pip` or any other tool, those instructions should be here as well. A complete stranger should be able to follow these instructions, so don't be afraid to include videos, screenshots, diagrams, text, whatever helps!
+How to play the game:
+1. Open in the "game_runner" file in IDLE.
+2. Click the "Run" tab, then click "run module."
+3. Then just follow the game instructions in the program.
+4. for your responses, make sure to type 'a', 'b', 'c', or 'd', corresponding to the apropriate answer.
+5. Typing 'leave' in a question will end the program and give you how much you won.
